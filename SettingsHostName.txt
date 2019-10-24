@@ -1,0 +1,7 @@
+file:/etc/hostname
+meoMachineName.galileo.corp.lcl
+
+files:/etc/sysconfig/network-scripts
+ifcfg-enp0s3 
+  add this line: 
+  DHCP_HOSTNAME=meoMachineName.galileo.corp.lcl

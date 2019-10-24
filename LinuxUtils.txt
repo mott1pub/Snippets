@@ -1,0 +1,16 @@
+mtr - Trace route.. Nice..
+iotop - I/O top utility
+lftp - ftp/http/sftp client
+
+export JAVA_HOME = ' /projects/wassoa/was85/appserver/java_1.7_64'
+
+cd
+ /projects/wassoa/was85/appserver/java_1.7_64/bin/java
+ 
+keytool -list -v -keystore keystore.jks 
+ 
+./bin/java
+./bin/keytool -list -keystore ./jre/lib/security/cacerts
+
+ JAVA_HOME/jre/lib/security 
+ 

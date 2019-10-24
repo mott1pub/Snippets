@@ -1,0 +1,5 @@
+(VirtualBox requires gcc 
+   dnf install gcc
+	 dnf install	kernel-devel (or your version reported..)
+	 dnf install  linux-headers
+	)

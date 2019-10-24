@@ -1,0 +1,14 @@
+1. Create the directory structure if you use a package. 
+  /com/travelport/ etc.. put your source here.
+2. fully qualify the classpath to jars.
+  .:/home/monte.ott/log4j-api-2.1.jar:/home/monte.ott/log4j-core-2.1.jar
+  *remember LINUX uses ':' not ';'
+3. Remember to transfer .jar's as binary
+4. copy 'log4j2.xml' to root.
+
+
+sample compile:
+ /projects/wassoa/was85/appserver/java_1.7_64/bin/javac HostLogName.java -cp $CLASSPATH
+
+sample execute:
+/projects/wassoa/was85/appserver/java_1.7_64/bin/java com.travelport.HostLogName

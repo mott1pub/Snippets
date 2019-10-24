@@ -1,0 +1,185 @@
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.charset.Charset;
+
+import org.apache.log4j.Logger;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+
+		final Logger log = Logger.getLogger(TestMain.class.getName());
+		
+		File mypath = new File(".");
+		log.info("My Path:" + mypath.getAbsolutePath());
+		
+		URI uri = null;
+		try {
+			uri = new URI("file:/C:/temp/New%20Folder/test.txt");
+		} catch (URISyntaxException e1) {
+			log.fatal("", e1);
+		}
+
+		File file = new File(uri);
+
+		log.info("File at:" + file.getAbsolutePath());
+		
+	  	log.info("Default Charset=" + Charset.defaultCharset());
+    	System.setProperty("file.encoding", "Latin-1");
+    	log.info("file.encoding=" + System.getProperty("file.encoding"));
+    	log.info("Default Charset=" + Charset.defaultCharset());
+    	log.info("Default Charset in Use=" + getDefaultCharSet());
+		
+		boolean result = file.canRead();
+		
+		log.info("Result:" + result);
+		
+		FileInputStream instr = null;
+		try {
+			instr = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			log.info("Error:",e);
+		}
+		
+		int c;
+		try {
+			while ((c = instr.read()) != -1) {
+				log.info("" + c);
+			}
+		} catch (IOException e) {
+			log.info("", e);
+		}
+	   
+
+	}
+
+	private static String getDefaultCharSet() {
+    	OutputStreamWriter writer = new OutputStreamWriter(new ByteArrayOutputStream());
+    	String enc = writer.getEncoding();
+    	return enc;
+    }
+
+}
+
+---- Sample output from Home Windows 7 09-29-2013
+log4j:ERROR Parsing error on line 11 and column 14
+log4j:ERROR The content of element type "appender" must match "(errorHandler?,param*,layout?,filter*,appender-ref*)".
+INFO  TestMain - My Path:I:\Users\Hsswtravel\workspace\Testing\.
+INFO  TestMain - File at:C:\temp\New Folder\test.txt
+INFO  TestMain - Default Charset=windows-1252
+INFO  TestMain - file.encoding=Latin-1
+INFO  TestMain - Default Charset=windows-1252
+INFO  TestMain - Default Charset in Use=Cp1252
+INFO  TestMain - Result:true
+INFO  TestMain - 109
+INFO  TestMain - 111
+INFO  TestMain - 110
+INFO  TestMain - 116
+INFO  TestMain - 101
+INFO  TestMain - 114
+
+
+-- 
+Monte Ott
+
+TP LT 09-30-20132 Output J2EE Version: 
+Set  to United Kingdom Char 
+INFO  TestPath - MyPath:C:\Users\Monte.Ott\workspace\MyTest\.
+INFO  TestPath - *** CLASSPATHS ***
+INFO  TestPath - /C:/Users/Monte.Ott/workspace/MyTest/bin/
+file:/C:/Users/Monte.Ott/workspace/MyTest/bin/
+INFO  TestPath - /C:/monte/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar
+file:/C:/monte/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar
+INFO  TestPath - /C:/monte/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar
+file:/C:/monte/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar
+INFO  TestPath - /C:/monte/M2Repository/log4j/log4j/1.2.17/log4j-1.2.17.jar
+file:/C:/monte/M2Repository/log4j/log4j/1.2.17/log4j-1.2.17.jar
+INFO  TestPath - /C:/monte/eclipse/configuration/org.eclipse.osgi/bundles/358/1/.cp/
+file:/C:/monte/eclipse/configuration/org.eclipse.osgi/bundles/358/1/.cp/
+INFO  TestPath - /C:/monte/eclipse/configuration/org.eclipse.osgi/bundles/357/1/.cp/
+file:/C:/monte/eclipse/configuration/org.eclipse.osgi/bundles/357/1/.cp/
+INFO  TestPath - *** END CLASSPATHS ***
+INFO  TestPath - My Path:C:\Users\Monte.Ott\workspace\MyTest\.
+INFO  TestPath - File at:C:\temp\New Folder\test.txt
+INFO  TestPath - Default Charset=windows-1252
+INFO  TestPath - file.encoding=Latin-1
+INFO  TestPath - Default Charset=windows-1252
+INFO  TestPath - Default Charset in Use=Cp1252
+INFO  TestPath - Result:true
+INFO  TestPath - 109
+INFO  TestPath - 111
+INFO  TestPath - 110
+INFO  TestPath - 116
+INFO  TestPath - 101
+INFO  TestPath - 13
+INFO  TestPath - 10
+
+TP test Reset back to US English: 9:24 am:
+Running JDK Eclipse.. 
+INFO  TestPath – MyPath:C:\Users\Monte.Ott\workspace\MyTest\.
+INFO  TestPath - *** CLASSPATHS ***
+INFO  TestPath - /C:/Users/Monte.Ott/workspace/MyTest/bin/
+file:/C:/Users/Monte.Ott/workspace/MyTest/bin/
+INFO  TestPath - /C:/monte/Kepler%20Eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar
+file:/C:/monte/Kepler%20Eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar
+INFO  TestPath - /C:/monte/Kepler%20Eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar
+file:/C:/monte/Kepler%20Eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar
+INFO  TestPath - /C:/monte/M2Repository/log4j/log4j/1.2.17/log4j-1.2.17.jar
+file:/C:/monte/M2Repository/log4j/log4j/1.2.17/log4j-1.2.17.jar
+INFO  TestPath - /C:/monte/Kepler%20Eclipse/configuration/org.eclipse.osgi/bundles/167/1/.cp/
+file:/C:/monte/Kepler%20Eclipse/configuration/org.eclipse.osgi/bundles/167/1/.cp/
+INFO  TestPath - /C:/monte/Kepler%20Eclipse/configuration/org.eclipse.osgi/bundles/166/1/.cp/
+file:/C:/monte/Kepler%20Eclipse/configuration/org.eclipse.osgi/bundles/166/1/.cp/
+INFO  TestPath - *** END CLASSPATHS ***
+INFO  TestPath – My Path:C:\Users\Monte.Ott\workspace\MyTest\.
+INFO  TestPath – File at:C:\temp\New Folder\test.txt
+INFO  TestPath – Default Charset=windows-1252
+INFO  TestPath – file.encoding=Latin-1
+INFO  TestPath – Default Charset=windows-1252
+INFO  TestPath – Default Charset in Use=Cp1252
+INFO  TestPath – Result:true
+INFO  TestPath – 109
+INFO  TestPath – 111
+INFO  TestPath – 110
+INFO  TestPath – 116
+INFO  TestPath – 101
+INFO  TestPath – 13
+INFO  TestPath – 10
+
+Removed last blank line:
+ 
+INFO  TestPath - MyPath:C:\Users\Monte.Ott\workspace\MyTest\.
+INFO  TestPath - *** CLASSPATHS ***
+INFO  TestPath - /C:/Users/Monte.Ott/workspace/MyTest/bin/
+file:/C:/Users/Monte.Ott/workspace/MyTest/bin/
+INFO  TestPath - /C:/monte/Kepler%20Eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar
+file:/C:/monte/Kepler%20Eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar
+INFO  TestPath - /C:/monte/Kepler%20Eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar
+file:/C:/monte/Kepler%20Eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar
+INFO  TestPath - /C:/monte/M2Repository/log4j/log4j/1.2.17/log4j-1.2.17.jar
+file:/C:/monte/M2Repository/log4j/log4j/1.2.17/log4j-1.2.17.jar
+INFO  TestPath - /C:/monte/Kepler%20Eclipse/configuration/org.eclipse.osgi/bundles/167/1/.cp/
+file:/C:/monte/Kepler%20Eclipse/configuration/org.eclipse.osgi/bundles/167/1/.cp/
+INFO  TestPath - /C:/monte/Kepler%20Eclipse/configuration/org.eclipse.osgi/bundles/166/1/.cp/
+file:/C:/monte/Kepler%20Eclipse/configuration/org.eclipse.osgi/bundles/166/1/.cp/
+INFO  TestPath - *** END CLASSPATHS ***
+INFO  TestPath - My Path:C:\Users\Monte.Ott\workspace\MyTest\.
+INFO  TestPath - File at:C:\temp\New Folder\test.txt
+INFO  TestPath - Default Charset=windows-1252
+INFO  TestPath - file.encoding=Latin-1
+INFO  TestPath - Default Charset=windows-1252
+INFO  TestPath - Default Charset in Use=Cp1252
+INFO  TestPath - Result:true
+INFO  TestPath - 109
+INFO  TestPath - 111
+INFO  TestPath - 110
+INFO  TestPath - 116
+INFO  TestPath - 101
+
+

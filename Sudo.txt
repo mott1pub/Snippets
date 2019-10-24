@@ -1,0 +1,6 @@
+1. edit /etc/sudoers 
+  Remove # from in front of #%wheel line.. 
+    *Note remember to leave the %
+2. add user to group wheel
+  usermod -aG wheel monte.ott
+3. Reboot to get Groups refreshed for user.

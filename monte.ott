@@ -1,0 +1,38 @@
+## Designed to be run as 'source' command in BASH
+
+## history stop before execute and allow for change before execute
+shopt -s histverify
+
+## Java
+export JAVA_HOME=/usr/java/continuum
+
+## Maven
+export MAVEN_HOME=/usr/maven/default
+
+export MAVEN_OPTS='-Xms2048m -Xmx7288m -XX:+UseConcMarkSweepGC -XX:PermSize=512m -XX:MaxPermSize=2024m -Dhibernate.jdbc.batch_size=0'
+
+echo Adding Maven to PATH:$MAVEN_HOME
+export PATH=$PATH:$MAVEN_HOME/bin
+
+alias mobacar='cd ~;cd Documents/WorkspaceMobacar/Mobacar'
+alias fsp='cd ~;cd workspaces/workspace/FspAPI'
+
+#build a project
+alias pbuild='mvn install -Pkestrel-was -DskipTests -o'
+
+#build UAPI
+alias deploy='mvn install -Pkestrel-was -DskipTests -Ddeploy -o;'
+alias build='mvn install -Pkestrel-was -DskipTests -o'
+
+#Sync and Build UAPI
+alias fullbuild='mvn clean install -Pkestrel-was -DskipTests'
+alias fulldeploy='mvn clean install -Pkestrel-was -DskipTests -Ddeploy -Dconfig'
+
+#Browse Logs
+alias logs='cd /home/monte.ott/workspaces/workspace/FspAPI/uapi-utilities/logsearch-util/bin; ./mylog > ./loggrep.pl'
+
+#remove proxy
+alias noproxy='unset http_proxy;unset http_proxys'
+
+#set proxy
+alias setproxy=sudo sh '/ect/profile.d/proxy.sh'
