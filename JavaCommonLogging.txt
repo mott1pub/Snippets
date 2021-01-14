@@ -1,2 +1,0 @@
-${:import(org.apache.commons.logging.Log, org.apache.commons.logging.LogFactory)}
-private Log log = LogFactory.getLog(${primary_type_name}.class.getName());

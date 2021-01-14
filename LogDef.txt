@@ -6,3 +6,31 @@ final Logger log = LogManager.getLogger(${primary_type_name}.class.getName());
 
 $${:import (org.slf4j.Logger org.slf4j.LoggerFactory)}
 private static final Logger log = LoggerFactory.getLogger(${primary_type_name}.class);
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="TRACE">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<RollingFile name="File" fileName="test/logs/log.log"
+			filePattern="test/logs/log.app-%d{MM-dd-yyyy}.log" immediateFlush="false">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+			<!-- client -->
+		<Logger name="org.apache.http.headers" level="TRACE"/>
+		<Logger name="org.apache.http.wire" level="TRACE"/>
+		
+		<Root level="TRACE">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="File" />
+		</Root>
+	</Loggers>
+</Configuration>
