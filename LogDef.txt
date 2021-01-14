@@ -1,2 +1,8 @@
 ${:import(org.apache.commons.logging.Log, org.apache.commons.logging.LogFactory)}
 private Log log = LogFactory.getLog(${primary_type_name}.class.getName());
+
+$${:import (org.apache.logging.log4j.LogManager org.apache.logging.log4j.Logger)}
+final Logger log = LogManager.getLogger(${primary_type_name}.class.getName());
+
+$${:import (org.slf4j.Logger org.slf4j.LoggerFactory)}
+private static final Logger log = LoggerFactory.getLogger(${primary_type_name}.class);
