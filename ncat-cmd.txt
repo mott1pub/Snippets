@@ -1,0 +1,1 @@
+ncat -v -l -p 5555 -c 'while true; do read i && echo [echo] $i; done'
