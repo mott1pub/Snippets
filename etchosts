@@ -1,0 +1,8 @@
+text# Standard IPv4 loopback (Do not delete)
+127.0.0.1       localhost localhost.ottfamily.net
+
+# Standard IPv6 loopback (Do not delete)
+::1             localhost ip6-localhost ip6-loopback
+
+# Local physical machine name mapping
+127.0.1.1       gipsydanger gipsydanger.ottfamily.net
